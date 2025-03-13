@@ -1,16 +1,17 @@
 @description('The datacenter to use for the deployment.')
-param location string
-param environmentName string
-param projectName string
-param logicAppName string
-param appServicePlanName string
+param location string = 'eastus'
+param environmentName string ='Staging'
+param projectName string = 'Exploration'
+param logicAppName string ='Bicepdeployment0313'
+param appServicePlanName string ='Bicepdeployment0313'
 
 @minLength(3)
 @maxLength(24)
-param storageName string
+param storageName string ='serenabicepdeploy0313'
 param kind string = 'StorageV2'
 param skuName string = 'Standard_LRS'
 param skuTier string = 'Standard'
+
 
 resource storage 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   sku: {
@@ -90,7 +91,7 @@ resource logicApp 'Microsoft.Web/sites@2018-11-01' = {
         }
         {
           name: 'WEBSITE_CONTENTSHARE'
-          value: logicAppName
+          value: 'test'
         }
         {
           name: 'WEBSITE_NODE_DEFAULT_VERSION'
